@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/appointment_system
+    username: appointment-admin
+    password: admin
