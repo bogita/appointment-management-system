@@ -23,14 +23,13 @@ public class AppointmentController {
 	}
 
 	@PutMapping("/update")
-	public void updateAppointment(@RequestBody Appointment appointment){
-		repository.save(appointment);
+	public Appointment updateAppointment(@RequestBody Appointment appointment){
+		return repository.save(appointment);
 	}
 
 	@PostMapping("/create")
 	public Appointment createAppointment(@RequestBody Appointment appointment){
-		repository.save(appointment);
-		return appointment;
+		return repository.save(appointment);
 	}
 
 	@DeleteMapping("/delete/{id}")

@@ -1,21 +1,30 @@
 package com.appointment.system.appointments;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.Objects;
+
+import com.appointment.system.JsonDateSerializer;
+import com.appointment.system.LocalDateTimeSerializer;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 public class Appointment {
 
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	private Long id;
 
-	@Column(name = "start_time", columnDefinition="DATETIME")
-	private Date start_time;
+	@JsonDeserialize(using = JsonDateSerializer.class)
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	private LocalDateTime start_time;
 
-	@Column(name = "end_time", columnDefinition="DATETIME")
-	private Date end_time;
+	@JsonDeserialize(using = JsonDateSerializer.class)
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	private LocalDateTime end_time;
 
 	private String name;
 	private String type;
@@ -24,7 +33,7 @@ public class Appointment {
 
 	protected Appointment(){}
 
-	public Appointment(Date start_time, Date end_time, String name, String type, String description, String metadata){
+	public Appointment(LocalDateTime start_time, LocalDateTime end_time, String name, String type, String description, String metadata){
 		this.start_time=start_time;
 		this.end_time=end_time;
 		this.name=name;
@@ -33,19 +42,29 @@ public class Appointment {
 		this.metadata=metadata;
 	}
 
-	public Date getStart_time() {
+	public Long getId(){
+		return id;
+	}
+
+	public void setId(Long id){
+		this.id=id;
+	}
+
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public LocalDateTime getStart_time() {
 		return start_time;
 	}
 
-	public void setStart_time(Date start_time) {
+	public void setStart_time(LocalDateTime start_time) {
 		this.start_time = start_time;
 	}
 
-	public Date getEnd_time() {
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public LocalDateTime getEnd_time() {
 		return end_time;
 	}
 
-	public void setEnd_time(Date end_time) {
+	public void setEnd_time(LocalDateTime end_time) {
 		this.end_time = end_time;
 	}
 
@@ -79,6 +98,28 @@ public class Appointment {
 
 	public void setMetadata(String metadata) {
 		this.metadata = metadata;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Appointment that = (Appointment) o;
+		return Objects.equals(id, that.id) &&
+				Objects.equals(start_time, that.start_time) &&
+				Objects.equals(end_time, that.end_time) &&
+				Objects.equals(name, that.name) &&
+				Objects.equals(type, that.type) &&
+				Objects.equals(description, that.description) &&
+				Objects.equals(metadata, that.metadata);
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(id, start_time, end_time, name, type, description, metadata);
 	}
 
 	@Override

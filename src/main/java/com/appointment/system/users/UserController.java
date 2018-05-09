@@ -23,14 +23,13 @@ public class UserController {
 	}
 
 	@PutMapping("/update")
-	public void updateUser(@RequestBody User user){
-		repository.save(user);
+	public User updateUser(@RequestBody User user){
+		return repository.save(user);
 	}
 
 	@PostMapping("/create")
 	public User createUser(@RequestBody User user){
-		repository.save(user);
-		return user;
+		return repository.save(user);
 	}
 
 	@DeleteMapping("/delete/{id}")
