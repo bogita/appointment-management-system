@@ -1,0 +1,8 @@
+applications:
+- name: appointment-management-system
+  disk_quota: 1G
+  instances: 1
+  memory: 1G
+  routes:
+  - route: appointment-management-system-hmn.cfapps.io
+  stack: cflinuxfs2
