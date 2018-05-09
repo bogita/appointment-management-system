@@ -1,4 +1,4 @@
-package com.appointment.system;
+package com.appointment.system.config;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

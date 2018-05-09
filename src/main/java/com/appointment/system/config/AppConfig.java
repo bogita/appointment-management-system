@@ -1,4 +1,4 @@
-package com.appointment.system;
+package com.appointment.system.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

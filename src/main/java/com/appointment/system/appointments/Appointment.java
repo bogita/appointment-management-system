@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import com.appointment.system.JsonDateSerializer;
-import com.appointment.system.LocalDateTimeSerializer;
+import com.appointment.system.config.JsonDateSerializer;
+import com.appointment.system.config.LocalDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
